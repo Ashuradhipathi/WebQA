@@ -6,16 +6,12 @@ from langgraph.graph import MessagesState, StateGraph
 from llm_utils import init_llm, init_vector_store
 from ingestion import process_url
 from graph_builder import build_graph
+import graph_builder
 
-# Ensure an asyncio event loop exists (avoids "no running event loop" errors).
-try:
-    asyncio.get_running_loop()
-except RuntimeError:
-    asyncio.set_event_loop(asyncio.new_event_loop())
 
 # Ensure USER_AGENT is set.
 if not os.environ.get("USER_AGENT"):
-    os.environ["USER_AGENT"] = "WebQA/1.0"  # Adjust if needed.
+    os.environ["USER_AGENT"] = "WebQA/1.0" 
 
 # Create a global ThreadPoolExecutor for background tasks.
 executor = ThreadPoolExecutor(max_workers=2)
@@ -28,7 +24,6 @@ def main():
     vector_store = init_vector_store()
     
     # Set the globals in graph_builder so that our nodes can access them.
-    import graph_builder
     graph_builder.llm = llm
     graph_builder.vector_store = vector_store
 

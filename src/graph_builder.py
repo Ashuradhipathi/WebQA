@@ -40,6 +40,7 @@ def generate(state: MessagesState):
     # Strong instruction: use only the retrieved context.
     system_message_content = (
         "You are an assistant for question-answering tasks. "
+        "Keep the answers precise and concise"
         "Only use the following retrieved context to answer the question. "
         "Do not use any external or pre-trained knowledge. "
         "If the answer is not found in the context, state that you do not know.\n\n"
