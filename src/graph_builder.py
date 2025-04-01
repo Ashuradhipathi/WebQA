@@ -10,7 +10,7 @@ vector_store = None
 @tool(response_format="content_and_artifact")
 def retrieve(query: str):
     """Retrieve relevant information from the vector store."""
-    retrieved_docs = vector_store.similarity_search(query, k=2)
+    retrieved_docs = vector_store.similarity_search(query, k=3)
     if not retrieved_docs:
         return "No relevant data found.", []
     serialized = "\n\n".join(
